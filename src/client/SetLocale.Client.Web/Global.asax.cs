@@ -9,13 +9,24 @@ using Castle.Windsor.Installer;
 
 using SetLocale.Client.Web.Configurations;
 using SetLocale.Client.Web.Helpers;
+using System.Web.Optimization;
 
 namespace SetLocale.Client.Web
 {
     public class Global : HttpApplication
     {
+        void RegisterBundles(BundleCollection bundles)
+        {
+            //Add a bundle to minify JS files on release mode. 
+            var myBundle = new Bundle("~/Scripts/myBundle");
+            myBundle.IncludeDirectory("~/Public/js", "*.js");
+            bundles.Add(myBundle);
+        }
         protected void Application_Start(object sender, EventArgs e)
         {
+            
+            RegisterBundles(BundleTable.Bundles);
+            
             MvcHandler.DisableMvcResponseHeader = true;
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

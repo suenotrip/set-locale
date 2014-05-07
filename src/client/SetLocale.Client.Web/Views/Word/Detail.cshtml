@@ -76,11 +76,12 @@
 </div>
 
 
-
 @section script
 {
+
     <link href="/public/css/select2.css" rel="stylesheet" />
-    <script src="/public/js/select2.js"></script>
+    @*<script src="/public/js/select2.js"></script>*@
+    <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Scripts/myBundle")"></script>
 
     <script>
         $(function () {
